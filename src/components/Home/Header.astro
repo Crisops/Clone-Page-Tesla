@@ -1,0 +1,81 @@
+---
+import Logo from "./Logo.astro";
+import Navegation from "./Navegation.astro";
+import Support from "./Support.astro";
+---
+
+
+<header  id="landing_header" class="py-2 px-10 flex justify-between items-center fixed top-0 w-full z-40">
+  <div class="flex flex-grow basis-0">
+    <Logo/>
+  </div>
+  <Navegation/>
+  <Support/>
+  <div id="menu-backdrop" class="absolute top-0 left-0 translate-y-[var(--top)] translate-x-[var(--left)] w-[var(--width)] h-[var(--height)] bg-black/5 backdrop-blur-lg rounded transition-all duration-700 ease-in-out -z-10"></div>
+</header>
+
+
+<script>
+  const $menu = document.querySelectorAll("#landing_header li[data-menu-backdrop]");
+  const $menu_backdrop = document.getElementById("menu-backdrop");
+
+  $menu.forEach(li =>{
+    li.addEventListener("mouseenter", () =>{
+
+      const {left,top,width,height} = li.getBoundingClientRect();
+          
+      $menu_backdrop.style.setProperty('width',`${width}px`);
+      $menu_backdrop.style.setProperty('height',`${height}px`);
+      $menu_backdrop.style.setProperty('left',`${left}px`);
+      $menu_backdrop.style.setProperty('top',`${top}px`);
+      $menu_backdrop.style.opacity = '1'
+      $menu_backdrop.style.visibility = 'visible';
+    })
+  })
+
+  $menu.forEach(li =>{
+    li.addEventListener("mouseleave", () =>{
+          
+      $menu_backdrop.style.opacity = '0'
+      $menu_backdrop.style.visibility = 'hidden';
+
+    })
+  })
+
+
+
+</script>
+
+
+
+
+<script>
+
+  const $header = document.getElementById("landing_header");
+  const $sections = document.querySelectorAll("section[data-header-color]");
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+  }
+
+  const observeElements = (entries) =>{
+    entries.forEach(entry => {
+      const {isIntersecting} = entry
+      if (isIntersecting) {
+        const color = entry.target.getAttribute("data-header-color");
+        $header.style.color = color
+      }
+    });
+  }
+
+  const observe = new IntersectionObserver(observeElements, observerOptions)
+
+  $sections.forEach(section =>{
+    observe.observe(section)
+  })
+
+
+
+</script>

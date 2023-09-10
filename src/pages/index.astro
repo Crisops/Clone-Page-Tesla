@@ -1,10 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
+import Header from '../components/Home/Header.astro';
+import HeroSection from '../components/Section/HeroSection.astro';
+import ChargeSection from '../components/Section/ChargeSection.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-
+<Layout title="Clone Tesla">
+	<Header/>
+	<main class="relative h-screen overflow-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
+		<div class="snap-center">
+			<HeroSection/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection img="../../public/img_one.avif"/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection img= "../../public/img_two.jpg"/>
+		</div>
 	</main>
 </Layout>

@@ -1,0 +1,29 @@
+---
+  interface Props {
+	img: string;
+}
+
+const { img } = Astro.props;
+---
+
+
+
+<section class="flex flex-col justify-start h-screen w-screen relative text-center overflow-hidden bg-black z-30" data-header-color="black">
+  <header class="relative z-30 flex-grow text-current">
+    <h2 class="pt-28 text-[40px] font-medium ">Model 3</h2>
+    <h3 class="text-xl font-medium">From $29,740*</h3>
+    <p class="text-xs">After Federal Tax Credit & Est. Gas Savings</p>
+  </header>
+  <footer class="relative z-30 py-3 text-current">
+    <div class=" flex gap-6 justify-center py-10">
+      <a class="px-24 py-[10px] bg-white text-gray-900 rounded-[4px] font-medium text-sm" href="#">Order Now</a>
+      <a class="px-24 py-[10px] bg-black bg-opacity-50 text-gray-100 rounded-[4px] font-medium text-sm"href="#">Demo Drive</a>
+    </div>
+    <p class="text-xs max-w-[585px] mx-auto">*Price before incentives and savings is $40,240, excluding taxes and fees. Subject to change.
+      <a class="underline" href="#">Learn about est. gas savings.</a>
+    </p>
+  </footer>
+    <div class="absolute w-full h-full z-10">
+      <img class="w-full h-full object-cover object-center" src=`${img}` alt="">
+    </div>
+</section>
