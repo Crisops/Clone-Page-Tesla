@@ -1,29 +1,76 @@
 ---
+import Footer from '../Home/Footer.astro';
+
   interface Props {
+  model: string;
+  price?:string;
+  description?:string;
+  price_before?:string;
 	img: string;
+  buttons?: number;
+  shop?: string;
+  footerColor?: boolean;
+  copyRight?:boolean;
 }
 
-const { img } = Astro.props;
+const { model, price, description, price_before,img, buttons, shop = "Demo Drive", footerColor, copyRight } = Astro.props;
 ---
 
 
 
 <section class="flex flex-col justify-start h-screen w-screen relative text-center overflow-hidden bg-black z-30" data-header-color="black">
   <header class="relative z-30 flex-grow text-current">
-    <h2 class="pt-28 text-[40px] font-medium ">Model 3</h2>
-    <h3 class="text-xl font-medium">From $29,740*</h3>
-    <p class="text-xs">After Federal Tax Credit & Est. Gas Savings</p>
+    <h2 class="pt-28 text-[40px] font-medium ">{model}</h2>
+    {
+      price === undefined ? "" : <h3 class="text-xl font-medium">From ${price}*</h3>  
+    }
+    {
+      description === undefined ? "" : <p class="text-xs">{description}</p> 
+    }
   </header>
-  <footer class="relative z-30 py-3 text-current">
+  <footer class="relative z-30 py-8 text-current">
     <div class=" flex gap-6 justify-center py-10">
-      <a class="px-24 py-[10px] bg-white text-gray-900 rounded-[4px] font-medium text-sm" href="#">Order Now</a>
-      <a class="px-24 py-[10px] bg-black bg-opacity-50 text-gray-100 rounded-[4px] font-medium text-sm"href="#">Demo Drive</a>
+      {
+        buttons !== undefined 
+        ? <a class:list={[
+          "px-24 py-[10px] bg-black text-gray-100 rounded-[4px] font-medium text-sm",
+          {
+            "border-2 border-white border-solid bg-opacity-0 font-semibold": buttons <=1,
+          },
+          [
+          {
+            "bg-white bg-opacity-100 text-gray-600 font-medium": shop,
+          }
+          ]
+        ]} href="#">{shop}</a> 
+        :<a class="px-24 py-[10px] bg-gray-300 text-gray-800 rounded-[4px] font-medium text-sm" href="#">Order Now</a>
+        <a class="px-24 py-[10px] bg-black bg-opacity-50 text-gray-100 rounded-[4px] font-medium text-sm" href="#">Demo Drive</a>
+      }
+      <!-- <a class="px-24 py-[10px] bg-white text-gray-900 rounded-[4px] font-medium text-sm" href="#">Order Now</a>
+      <a class="px-24 py-[10px] bg-black bg-opacity-50 text-gray-100 rounded-[4px] font-medium text-sm"href="#">Demo Drive</a> -->
     </div>
-    <p class="text-xs max-w-[585px] mx-auto">*Price before incentives and savings is $40,240, excluding taxes and fees. Subject to change.
-      <a class="underline" href="#">Learn about est. gas savings.</a>
-    </p>
+    {
+      price === undefined 
+      ? "" 
+      :
+      <p class:list={
+        [
+        "text-xs max-w-[585px] mx-auto",
+        {
+          "text-white": footerColor
+        }
+        ]
+      }>*Price before incentives and savings is ${price_before}, excluding taxes and fees. Subject to change.
+        <a class="underline" href="#">Learn about est. gas savings.</a>
+      </p>
+    }
   </footer>
     <div class="absolute w-full h-full z-10">
       <img class="w-full h-full object-cover object-center" src=`${img}` alt="">
     </div>
+    {
+      copyRight
+      ? <Footer/>
+      : ""
+    }
 </section>

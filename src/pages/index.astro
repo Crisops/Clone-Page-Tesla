@@ -9,13 +9,80 @@ import ChargeSection from '../components/Section/ChargeSection.astro';
 	<Header/>
 	<main class="relative h-screen overflow-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
 		<div class="snap-center">
-			<HeroSection/>
+			<HeroSection
+				model="Model 3"
+				price="29,740"
+				description="After Federal Tax Credit & Est. Gas Savings"
+				price_before="40,240"
+				video="../../public/video.mp4"
+			/>
 		</div>
 		<div class="snap-center">
-			<ChargeSection img="../../public/img_one.avif"/>
+			<ChargeSection
+				model="Model Y"
+				price="36,640"
+				description="After Federal Tax Credit & Est. Gas Savings"
+				price_before="47,740"
+				img="../../public/modelY.avif"
+			/>
 		</div>
 		<div class="snap-center">
-			<ChargeSection img= "../../public/img_two.jpg"/>
+			<ChargeSection
+				model="Model S"
+				price="71,090"
+				description="After Est. Gas Savings"
+				price_before="74,990"
+				img= "../../public/modelS.jpg"
+			/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection
+				model="Model X"
+				price="68,590"
+				description="After Federal Tax Credit & Est. Gas Savings"
+				price_before="79,990"
+				img= "../../public/modelX.avif"
+				footerColor = {true}
+			/>
+		</div>
+		<div class="snap-center">
+			<HeroSection
+			model="Experience Tesla"
+			description="Schedule a Demo Drive Today"
+			video="../../public/video_2.webm"
+			buttons = {1}
+		/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection
+				model="Solar Panels"
+				description="Schedule a Virtual Consultation"
+				price_before=""
+				 img= "../../public/solarPanels.avif"
+			/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection
+				model="Solar Roof"
+				description="Schedule a Virtual Consultation"
+				price_before=""
+				img= "../../public/SolarRoof.avif"
+			/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection
+				model="Powerwall"
+				img= "../../public/powerwall.avif"
+			/>
+		</div>
+		<div class="snap-center">
+			<ChargeSection
+				model="Accessories"
+			 	img= "../../public/accesories.avif"
+				buttons = {1}
+				shop = "Shop Now"
+				copyRight = {true}
+			/>
 		</div>
 	</main>
 </Layout>
